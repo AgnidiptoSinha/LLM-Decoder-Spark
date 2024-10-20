@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/LLM-Decoder-Spark.iml" filepath="$PROJECT_DIR$/.idea/modules/LLM-Decoder-Spark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LLM-Decoder-Spark.LLM-Decoder-Spark-build.iml" filepath="$PROJECT_DIR$/.idea/modules/LLM-Decoder-Spark.LLM-Decoder-Spark-build.iml" />
     </modules>
   </component>
 </project>
