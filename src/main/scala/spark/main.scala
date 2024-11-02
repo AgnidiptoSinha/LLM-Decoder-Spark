@@ -1,4 +1,4 @@
-import utils.SlidingWindowExample
+package spark
 import org.slf4j.LoggerFactory
 
 import spark.LLMTrainerExample
