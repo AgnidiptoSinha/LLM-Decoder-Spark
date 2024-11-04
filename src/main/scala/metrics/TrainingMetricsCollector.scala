@@ -86,6 +86,7 @@ class TrainingMetricsCollector extends BaseTrainingListener with Serializable {
   private val logger = LoggerFactory.getLogger(getClass)
   private val epochMetrics = ArrayBuffer[EpochMetrics]()
   private val currentBatchMetrics = ArrayBuffer[BatchMetrics]()
+
   private var startTime: Instant = _
   private var endTime: Instant = _
   private var peakMemory: Double = 0.0

@@ -102,7 +102,8 @@ class SparkNeuralTrainer(sc: SparkContext) extends Serializable {
         throw new IllegalStateException("Failed to create neural network")
       }
 
-      val totalParams = network.numParams()
+      // Mutable counters required to track cumulative statistics across training iterations
+      var totalParams = network.numParams()  // Counter for total network parameters that may change during training
       logger.info(s"Created network with $totalParams parameters")
 
       val tm = new ParameterAveragingTrainingMaster.Builder(batchSize)
@@ -118,11 +119,14 @@ class SparkNeuralTrainer(sc: SparkContext) extends Serializable {
         throw new IllegalStateException("Failed to create Spark neural network")
       }
 
-      var totalBatchTime = 0L
-      var batchesProcessed = 0L
+      // Mutable counters required to track cumulative statistics across training iterations
+      var totalBatchTime = 0L        // Accumulator for total processing time across all batches
+      var batchesProcessed = 0L      // Counter for total number of batches processed
       val epochMetricsBuffer = new scala.collection.mutable.ArrayBuffer[EpochMetrics]()
 
       // Training loop
+      // Using traditional for loop for clarity in stateful training process
+      // Could use (1 to numEpochs).foreach but imperative style better expresses training loop semantics
       for (epoch <- 1 to numEpochs) {
         val epochStartTime = Instant.now()
         logger.info(s"Starting epoch $epoch")
