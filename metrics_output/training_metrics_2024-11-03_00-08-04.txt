@@ -1,0 +1,161 @@
+=== LLM Training Metrics Report ===
+Generated: 2024-11-03_00-08-04
+
+=== Training Summary ===
+Total Duration: 8s
+Total Epochs: 10
+Final Training Accuracy: 100.00%
+Final Validation Accuracy: 0.00%
+Final Loss: 0.009530
+Final Validation Loss: NaN
+Average Batch Time: 37.21 ms
+Peak Memory Usage: 3481.04 MB
+
+=== Model Statistics ===
+Total Parameters: 230016
+Layer Sizes: 512 ? 256 ? 256 ? 128
+Total Batches Processed: 150
+Average Processing Time per Batch: 37.21 ms
+
+=== Spark Execution Statistics ===
+Active Executors: 1
+Total Executor Memory: 2004.60 MB
+Active Jobs: 0
+Data Partition Skew: 100.00%
+
+=== Executor Details ===
+Executor (10.0.0.250:8833):
+  Storage Memory Used/Total: 0.05 MB / 2004.60 MB
+  Running Tasks: 0
+
+=== Epoch Details ===
+
+Epoch 1:
+  Loss: 0.039029
+  Accuracy: 0.00%
+  Validation Loss: NaN
+  Validation Accuracy: 0.00%
+  Learning Rate: 1.000000e-03
+  Duration: 2s
+  Gradient Statistics:
+    Norm: 0.000000
+    Min/Max: 0.000000 / 0.000000
+    Mean: 0.000000
+    Std Dev: 0.000000
+
+Epoch 2:
+  Loss: 0.027353
+  Accuracy: 0.00%
+  Validation Loss: NaN
+  Validation Accuracy: 0.00%
+  Learning Rate: 1.000000e-03
+  Duration: 1s
+  Gradient Statistics:
+    Norm: 0.000000
+    Min/Max: 0.000000 / 0.000000
+    Mean: 0.000000
+    Std Dev: 0.000000
+
+Epoch 3:
+  Loss: 0.020842
+  Accuracy: 20.00%
+  Validation Loss: NaN
+  Validation Accuracy: 0.00%
+  Learning Rate: 1.000000e-03
+  Duration: 1s
+  Gradient Statistics:
+    Norm: 0.000000
+    Min/Max: 0.000000 / 0.000000
+    Mean: 0.000000
+    Std Dev: 0.000000
+
+Epoch 4:
+  Loss: 0.016927
+  Accuracy: 53.33%
+  Validation Loss: NaN
+  Validation Accuracy: 0.00%
+  Learning Rate: 1.000000e-03
+  Duration: 1s
+  Gradient Statistics:
+    Norm: 0.000000
+    Min/Max: 0.000000 / 0.000000
+    Mean: 0.000000
+    Std Dev: 0.000000
+
+Epoch 5:
+  Loss: 0.014452
+  Accuracy: 86.67%
+  Validation Loss: NaN
+  Validation Accuracy: 0.00%
+  Learning Rate: 1.000000e-03
+  Duration: 0s
+  Gradient Statistics:
+    Norm: 0.000000
+    Min/Max: 0.000000 / 0.000000
+    Mean: 0.000000
+    Std Dev: 0.000000
+
+Epoch 6:
+  Loss: 0.012812
+  Accuracy: 100.00%
+  Validation Loss: NaN
+  Validation Accuracy: 0.00%
+  Learning Rate: 1.000000e-03
+  Duration: 1s
+  Gradient Statistics:
+    Norm: 0.000000
+    Min/Max: 0.000000 / 0.000000
+    Mean: 0.000000
+    Std Dev: 0.000000
+
+Epoch 7:
+  Loss: 0.011668
+  Accuracy: 100.00%
+  Validation Loss: NaN
+  Validation Accuracy: 0.00%
+  Learning Rate: 1.000000e-03
+  Duration: 0s
+  Gradient Statistics:
+    Norm: 0.000000
+    Min/Max: 0.000000 / 0.000000
+    Mean: 0.000000
+    Std Dev: 0.000000
+
+Epoch 8:
+  Loss: 0.010796
+  Accuracy: 100.00%
+  Validation Loss: NaN
+  Validation Accuracy: 0.00%
+  Learning Rate: 1.000000e-03
+  Duration: 0s
+  Gradient Statistics:
+    Norm: 0.000000
+    Min/Max: 0.000000 / 0.000000
+    Mean: 0.000000
+    Std Dev: 0.000000
+
+Epoch 9:
+  Loss: 0.010098
+  Accuracy: 100.00%
+  Validation Loss: NaN
+  Validation Accuracy: 0.00%
+  Learning Rate: 1.000000e-03
+  Duration: 0s
+  Gradient Statistics:
+    Norm: 0.000000
+    Min/Max: 0.000000 / 0.000000
+    Mean: 0.000000
+    Std Dev: 0.000000
+
+Epoch 10:
+  Loss: 0.009530
+  Accuracy: 100.00%
+  Validation Loss: NaN
+  Validation Accuracy: 0.00%
+  Learning Rate: 1.000000e-03
+  Duration: 0s
+  Gradient Statistics:
+    Norm: 0.000000
+    Min/Max: 0.000000 / 0.000000
+    Mean: 0.000000
+    Std Dev: 0.000000

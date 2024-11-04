@@ -17,7 +17,7 @@ This project is part of CS441 (Homework 2) focused on building a Large Language 
 - [Implementation Details](#implementation-details)
 - [Testing](#testing)
 - [Performance Metrics](#performance-metrics)
-- [Known Limitations](#known-limitations)
+- [License](#license)
 
 ## Project Structure
 ```
