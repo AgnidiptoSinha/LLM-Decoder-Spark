@@ -1,4 +1,5 @@
--Xms1024M
--Xmx4096M
--Xss2M
--XX:MaxMetaspaceSize=1024M
+-Xms2G
+-Xmx6G
+-XX:+UseG1GC
+-XX:MaxGCPauseMillis=200
+-XX:ReservedCodeCacheSize=512m

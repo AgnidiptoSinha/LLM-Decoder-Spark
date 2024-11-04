@@ -14,9 +14,17 @@ case class WindowData(
                      ) extends Serializable
 
 // Helper class for creating embeddings and datasets
-class DatasetCreator(embeddingSize: Int) extends Serializable {
+class DatasetCreator(
+                      embeddingSize: Int,
+                     existingEmbeddings: Option[Map[String, Array[Double]]] = None
+                    ) extends Serializable {
+
   def createEmbeddings(tokens: Array[String]): Map[String, INDArray] = {
-    tokens.map(token => token -> Nd4j.rand(embeddingSize)).toMap
+    existingEmbeddings.getOrElse {
+      tokens.map(token => token -> Nd4j.rand(embeddingSize).toDoubleVector).toMap
+    }.map { case (token, array) =>
+      token -> Nd4j.create(array)
+    }
   }
 
   def computePositionalEmbedding(position: Int): INDArray = {
@@ -66,7 +74,8 @@ object SparkSlidingWindowDataset {
                                  tokens: Array[String],
                                  windowSize: Int,
                                  embeddingSize: Int,
-                                 numPartitions: Int
+                                 numPartitions: Int,
+                                 existingEmbeddings: Option[Map[String, Array[Double]]] = None
                                ): RDD[DataSet] = {
 
     // Create windows of tokens
@@ -80,69 +89,11 @@ object SparkSlidingWindowDataset {
     // Create RDD from windows
     val windowsRDD = sc.parallelize(windows, numPartitions)
 
-    // Create DatasetCreator instance
-    val creator = new DatasetCreator(embeddingSize)
+    // Create DatasetCreator instance with existing embeddings if provided
+    val creator = new DatasetCreator(embeddingSize, existingEmbeddings)
 
     // Process each window to create DataSet
     windowsRDD.map(creator.createDataSet)
-  }
-}
-
-object SparkSlidingWindowExample {
-  private val logger = LoggerFactory.getLogger(getClass)
-
-  def main(args: Array[String]): Unit = {
-    // Spark Configuration
-    val conf = new SparkConf()
-      .setAppName("Spark Sliding Window Dataset")
-      .setMaster("local[*]")
-      .set("spark.driver.memory", "4g")
-      .set("spark.executor.memory", "4g")
-
-    val sc = new SparkContext(conf)
-
-    try {
-      // Sample data
-      val sampleTokens = Array("The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog")
-      val windowSize = 4
-      val embeddingSize = 128
-
-      // Calculate optimal partitions
-      val numWindows = sampleTokens.length - windowSize
-      val numPartitions = SparkSlidingWindowUtils.calculateOptimalPartitions(numWindows)
-      logger.info(s"Using $numPartitions partitions")
-
-      // Create and process the RDD
-      val slidingWindowRDD = SparkSlidingWindowDataset.createSparkSlidingWindows(
-        sc,
-        sampleTokens,
-        windowSize,
-        embeddingSize,
-        numPartitions
-      )
-
-      // Cache the RDD
-      slidingWindowRDD.cache()
-
-      // Log RDD statistics
-      SparkSlidingWindowUtils.logRDDStats(slidingWindowRDD, logger)
-
-      // Process sample windows
-      val firstFewDataSets = slidingWindowRDD.take(3)
-      logger.info(s"No. of Datasets: ${slidingWindowRDD.count()}")
-      firstFewDataSets.zipWithIndex.foreach { case (ds, idx) =>
-        logger.info(s"Window $idx:")
-        logger.info(s"Input shape: ${ds.getFeatures.shape().mkString("x")}")
-        logger.info(s"Target shape: ${ds.getLabels.shape().mkString("x")}")
-      }
-
-    } catch {
-      case e: Exception =>
-        logger.error("Error in Spark sliding window creation", e)
-        throw e
-    } finally {
-      sc.stop()
-    }
   }
 }
 

@@ -1,14 +1,14 @@
-package spark
-import org.slf4j.LoggerFactory
+package hw2
 
-import spark.LLMTrainerExample
+import org.slf4j.LoggerFactory
+import spark.LLMTrainer
 
 object main {
   private val logger = LoggerFactory.getLogger(getClass)
 
   def main(args: Array[String]): Unit = {
 
-    LLMTrainerExample.main(Array())
+    LLMTrainer.main(Array())
 
   }
 }
